@@ -28,6 +28,15 @@
 
     </data>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/a" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -139,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_12sdp"
                         android:text="@{@string/date(date)}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_14sdp"
                         tools:text="Ngày: 15/05/2021" />
 
@@ -169,7 +178,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_12sdp"
                         android:text="@{@string/time_start(start)}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_14sdp"
                         tools:text="Bắt đầu: 09 giờ 15 phút" />
 
@@ -201,7 +210,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_12sdp"
                         android:text="@{@string/time_finish(finish)}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_14sdp"
                         tools:text="Kết thúc: 11 giờ 15 phút" />
 
@@ -232,4 +241,5 @@
             android:textAllCaps="false"
             android:textSize="@dimen/_18sdp" />
     </LinearLayout>
+    </FrameLayout>
 </layout>

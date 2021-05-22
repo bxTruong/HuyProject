@@ -28,7 +28,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragment.home.HomeFragment">
-
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/a" />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="@dimen/_48sdp"
             android:layout_height="@dimen/_48sdp"

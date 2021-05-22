@@ -10,157 +10,167 @@
             type="com.bxtruong.huyproject.SignupActivity" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="@dimen/_12sdp"
-        tools:context=".SignupActivity">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đăng Ký"
-            android:textColor="@color/purple_700"
-            android:textSize="@dimen/_18sdp" />
-
-        <ScrollView
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/a" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/_12sdp"
+            tools:context=".SignupActivity">
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:text="Đăng Ký"
+                android:textColor="@color/purple_700"
+                android:textSize="@dimen/_18sdp" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilUNSignUp"
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    app:errorEnabled="true">
+                    android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/edtUNSignUp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilUNSignUp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_14sdp"
-                        android:background="@color/white"
-                        android:hint="Nhập Tài Khoản"
-                        android:inputType="textEmailAddress"
-                        tools:ignore="Autofill,TextFields" />
+                        android:layout_marginTop="@dimen/_12sdp"
+                        app:errorEnabled="true">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/edtUNSignUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_14sdp"
+                            android:background="@color/white"
+                            android:hint="Nhập Tài Khoản"
+                            android:inputType="textEmailAddress"
+                            tools:ignore="Autofill,TextFields" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilPSSignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:endIconMode="password_toggle"
-                    app:errorEnabled="true">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/edtPSSignUp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilPSSignUp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/white"
-                        android:hint="Nhập Mật Khẩu"
-                        android:inputType="textPassword"
-                        tools:ignore="Autofill,TextFields" />
+                        app:endIconMode="password_toggle"
+                        app:errorEnabled="true">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/edtPSSignUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/white"
+                            android:hint="Nhập Mật Khẩu"
+                            android:inputType="textPassword"
+                            tools:ignore="Autofill,TextFields" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilNameSignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/edtNameSignUp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilNameSignUp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/white"
-                        android:hint="Nhập Tên Giảng Viên"
-                        android:inputType="text"
-                        tools:ignore="Autofill,TextFields" />
+                        app:errorEnabled="true">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/edtNameSignUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/white"
+                            android:hint="Nhập Tên Giảng Viên"
+                            android:inputType="text"
+                            tools:ignore="Autofill,TextFields" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilTeachSingUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/edtTeachSignUp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilTeachSingUp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/white"
-                        android:hint="Nhập Tên Bộ Môn"
-                        android:inputType="text"
-                        tools:ignore="Autofill,TextFields" />
+                        app:errorEnabled="true">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/edtTeachSignUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/white"
+                            android:hint="Nhập Tên Bộ Môn"
+                            android:inputType="text"
+                            tools:ignore="Autofill,TextFields" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilFaculty"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/edt_faculty_sign_up"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilFaculty"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/white"
-                        android:hint="Nhập Tên Khoa"
-                        android:inputType="text"
-                        tools:ignore="Autofill,TextFields" />
+                        app:errorEnabled="true">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/edt_faculty_sign_up"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/white"
+                            android:hint="Nhập Tên Khoa"
+                            android:inputType="text"
+                            tools:ignore="Autofill,TextFields" />
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <RadioButton
-                        android:id="@+id/rdTeacher"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/purple_500"
-                        android:checked="true"
-                        android:text="Giảng Viên" />
+                        android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/rdNotTeacher"
-                        android:layout_width="wrap_content"
+                        <RadioButton
+                            android:id="@+id/rdTeacher"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/purple_500"
+                            android:checked="true"
+                            android:text="Giảng Viên" />
+
+                        <RadioButton
+                            android:id="@+id/rdNotTeacher"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_12sdp"
+                            android:buttonTint="@color/purple_500"
+                            android:text="Phòng Đào Tạo" />
+
+                    </RadioGroup>
+
+                    <Button
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_12sdp"
-                        android:buttonTint="@color/purple_500"
-                        android:text="Phòng Đào Tạo" />
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:onClick="@{()-> SignUp.clickSignUp()}"
+                        android:paddingVertical="@dimen/_6sdp"
+                        android:text="Đăng Ký"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_16sdp" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </FrameLayout>
 
-                </RadioGroup>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:onClick="@{()-> SignUp.clickSignUp()}"
-                    android:paddingVertical="@dimen/_6sdp"
-                    android:text="Đăng Ký"
-                    android:textAllCaps="false"
-                    android:textSize="@dimen/_16sdp" />
-            </LinearLayout>
-        </ScrollView>
-
-
-    </LinearLayout>
 </layout>
