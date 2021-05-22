@@ -18,8 +18,14 @@
             type="String" />
 
         <variable
+            name="check"
+            type="String" />
+
+        <variable
             name="formExaminationFRG"
             type="com.bxtruong.huyproject.FormActivity" />
+
+
     </data>
 
     <LinearLayout
@@ -40,7 +46,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:paddingEnd="@dimen/_48sdp"
-                android:text="Tạo Phòng Thi"
+                android:text="@{@string/room(check)}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
                 tools:ignore="RtlSymmetry"
@@ -216,12 +222,13 @@
         </ScrollView>
 
         <Button
+            tools:text="Tạo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_12sdp"
             android:onClick="@{()->formExaminationFRG.clickActionForm()}"
             android:paddingVertical="@dimen/_6sdp"
-            android:text="Tạo"
+            android:text="@{check}"
             android:textAllCaps="false"
             android:textSize="@dimen/_18sdp" />
     </LinearLayout>

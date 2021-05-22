@@ -17,51 +17,60 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class LoginActivity2 : AppCompatActivity() {
-    lateinit var binding : ActivityLogin2Binding
+    lateinit var binding: ActivityLogin2Binding
     private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= DataBindingUtil.setContentView(this, R.layout.activity_login2)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login2)
 
-        binding.login=this
+        binding.login = this
+
+        if (Helper.readUser(this).full_name != "") {
+            startActivity(Intent(this@LoginActivity2, MainActivity::class.java))
+            finish()
+        }
     }
 
     fun login() {
         val username = binding.edtUserName.text.toString().trim()
         val password = binding.edtPassword.text.toString().trim()
         if (username == "") {
-            binding.tilUserName.error ="Không được để trống tài khoản"
+            binding.tilUserName.error = "Không được để trống tài khoản"
         } else if (password == "") {
-            binding.tilUserName.error =null
-            binding.tilPassword.error ="Không được để trống mật khẩu"
+            binding.tilUserName.error = null
+            binding.tilPassword.error = "Không được để trống mật khẩu"
         } else {
-            binding.tilUserName.error =null
-            binding.tilPassword.error=null
+            binding.tilUserName.error = null
+            binding.tilPassword.error = null
             FirebaseDatabase.getInstance().reference.child("Account").child(username)
                 .addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
-                        Log.e("Err","${error.message}")
+                        Log.e("Err", "${error.message}")
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
                         val user = p0.getValue(User::class.java)
-                        if ( user?.username!=username) {
-                            Toast.makeText(this@LoginActivity2,"Sai Tài Khoản", Toast.LENGTH_SHORT).show()
-                        } else if ( user.password!=password) {
-                            Toast.makeText(this@LoginActivity2,"Sai Mật Khẩu", Toast.LENGTH_SHORT).show()
+                        if (user?.username != username) {
+                            Toast.makeText(this@LoginActivity2, "Sai Tài Khoản", Toast.LENGTH_SHORT)
+                                .show()
+                        } else if (user.password != password) {
+                            Toast.makeText(this@LoginActivity2, "Sai Mật Khẩu", Toast.LENGTH_SHORT)
+                                .show()
                         } else {
                             val user2 = User(
                                 username,
                                 password,
                                 user.full_name,
+                                user.teach,
+                                user.faculty,
                                 user.teacher
                             )
                             openPDialog()
                             Handler().postDelayed({
                                 progressDialog!!.dismiss()
                                 Helper.writeUser(this@LoginActivity2, user2)
-                                startActivity(Intent(this@LoginActivity2,MainActivity::class.java))
+                                startActivity(Intent(this@LoginActivity2, MainActivity::class.java))
                             }, 1500)
                         }
                     }

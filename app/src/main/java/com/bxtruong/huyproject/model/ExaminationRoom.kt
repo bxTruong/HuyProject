@@ -4,6 +4,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class ExaminationRoom(
+    var id:String="",
     var nameRoom: String = "",
     var date: String = "",
     var timeStart: String = "",
@@ -14,6 +15,7 @@ data class ExaminationRoom(
     @Exclude
     fun toMap(): Map<String, Any?> {
         return mapOf(
+            "id" to id,
             "nameRoom" to nameRoom,
             "date" to date,
             "timeStart" to timeStart,

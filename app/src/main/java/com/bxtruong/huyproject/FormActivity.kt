@@ -2,14 +2,18 @@ package com.bxtruong.huyproject
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.bxtruong.huyproject.databinding.ActivityFormBinding
+import com.bxtruong.huyproject.helper.Helper
 import com.bxtruong.huyproject.model.ExaminationRoom
 import com.bxtruong.huyproject.model.NotificationData
 import com.bxtruong.huyproject.model.PushNotification
@@ -35,6 +39,9 @@ class FormActivity : AppCompatActivity() {
     lateinit var binding: ActivityFormBinding
     private val teachersName = ArrayList<String>()
     private val teachers = ArrayList<User>()
+    private var progressDialog: ProgressDialog? = null
+
+    lateinit var idUpdate: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +68,25 @@ class FormActivity : AppCompatActivity() {
 
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
 
+        binding.check = intent.getStringExtra("check")
+        idUpdate = intent.getStringExtra("id")!!
+
+
+        if (intent.getStringExtra("check") != "Tạo") {
+            FirebaseDatabase.getInstance().reference.child("Examination").child(idUpdate)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        val examinationRoom = p0.getValue(ExaminationRoom::class.java)!!
+                        binding.edtNameForm.setText(examinationRoom.nameRoom)
+                        binding.edtTeacher1Form.setText(examinationRoom.teacher1)
+                        binding.edtTeacher2Form.setText(examinationRoom.teacher2)
+                    }
+                })
+        }
+
     }
 
     private fun sendNotification(notification: PushNotification) =
@@ -81,10 +107,10 @@ class FormActivity : AppCompatActivity() {
         val roomName = binding.edtNameForm.text.toString().trim()
         val teacher1 = binding.edtTeacher1Form.text.toString().trim()
         val teacher2 = binding.edtTeacher2Form.text.toString().trim()
-        val start = binding.tvStart.text.toString().trim()
+        val start = binding.tvStart.text.toString()
         val finish = binding.tvFinish.text.toString().trim()
         val date = binding.tvDate.text.toString().trim()
-
+        Log.e("Value"," $start $finish $date ${start.contains("Trống")}")
         if (roomName == "") {
             binding.tilNameForm.error = "Không được để trống tên phòng thi"
         } else if (teacher1 == "") {
@@ -96,7 +122,7 @@ class FormActivity : AppCompatActivity() {
             binding.tilTeacher2Form.error = "Không được để trống tên giám thị 2"
         } else if (teacher1 == teacher2) {
             binding.tilNameForm.error = "2 giám thị không được giống nhau"
-        } else if (start.contentEquals("Trống") || finish.contentEquals("Trống") || date.contentEquals(
+        } else if (start.contains("Trống") || finish.contains("Trống") || date.contains(
                 "Trống"
             )
         ) {
@@ -117,16 +143,40 @@ class FormActivity : AppCompatActivity() {
             } else if (!check2) {
                 binding.tilTeacher2Form.error = "Giáo viên không có trong danh sách"
             } else {
-                PushNotification(
-                    NotificationData("Có phòng thi mới", "Các giáo viên vào xem"), TOPIC
-                ).also {
-                    sendNotification(it)
+                if (binding.check == "Tạo") {
+                    openPDialog()
+                    PushNotification(
+                        NotificationData("Có phòng thi mới", "Các giáo viên vào xem!"), TOPIC
+                    ).also {
+                        sendNotification(it)
+                    }
+                    val id = FirebaseDatabase.getInstance().reference.push().key
+                    val examinationRoom =
+                        ExaminationRoom(id!!, roomName, date, start, finish, teacher1, teacher2)
+                    FirebaseDatabase.getInstance().reference.child("Examination")
+                        .child(id)
+                        .setValue(examinationRoom.toMap()).addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                progressDialog!!.dismiss()
+                                onBackPressed()
+                            }
+                        }
+                } else {
+                    PushNotification(
+                        NotificationData("Chỉnh sửa phòng thi", "Các giáo viên vào xem!"), TOPIC
+                    ).also {
+                        sendNotification(it)
+                    }
+                    val examinationRoom =
+                        ExaminationRoom(idUpdate, roomName, date, start, finish, teacher1, teacher2)
+                    FirebaseDatabase.getInstance().reference.child("Examination")
+                        .child(idUpdate)
+                        .setValue(examinationRoom.toMap()).addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                onBackPressed()
+                            }
+                        }
                 }
-                val examinationRoom =
-                    ExaminationRoom(roomName, date, start, finish, teacher1, teacher2)
-                FirebaseDatabase.getInstance().reference.child("Examination")
-                    .child(roomName)
-                    .setValue(examinationRoom.toMap())
             }
 
         }
@@ -198,5 +248,12 @@ class FormActivity : AppCompatActivity() {
                 }, hour, minute, true
             )
         timePickerDialog.show()
+    }
+
+    private fun openPDialog() {
+        progressDialog = ProgressDialog(this)
+        progressDialog?.setCancelable(false)
+        progressDialog?.show()
+        progressDialog?.setContentView(R.layout.dialog_progress)
     }
 }

@@ -6,8 +6,11 @@
     values-round/strings.xml for round devices.
     -->
     <string name="time_start">Bắt đầu: %s</string>
+    <string name="room">%s Phòng Thi</string>
     <string name="time_finish">Kết thúc: %s</string>
-    <string name="teacher">Giáo viên: %s</string>
+    <string name="teacher">Giảng viên 1: %s</string>
+    <string name="teacher2">Giảng viên 2: %s</string>
+
     <string name="date_normal">%d/%d/%d</string>
     <string name="date1">0%d/%d/%d</string>
     <string name="date2">0%d/0%d/%d</string>

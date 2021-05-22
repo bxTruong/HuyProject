@@ -17,6 +17,10 @@
             name="checkTeacher"
             type="Boolean" />
 
+        <variable
+            name="user"
+            type="com.bxtruong.huyproject.model.User" />
+
         <import type="android.view.View" />
     </data>
 
@@ -30,7 +34,7 @@
             android:layout_height="@dimen/_48sdp"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/_12sdp"
-            android:backgroundTint="@color/purple_700"
+            android:backgroundTint="@color/purple_500"
             android:onClick="@{()-> Main.addExaminationRoom()}"
             android:src="@drawable/ic_add"
             android:visibility="@{checkTeacher? View.GONE : View.VISIBLE}"
@@ -42,29 +46,162 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/_12sdp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcCategory"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:overScrollMode="never"
-                android:visibility="@{listIsEmpty ? View.GONE : View.VISIBLE}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_examination_room" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvListCategory"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingTop="@dimen/_12sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/ic_baseline_account_circle_24"
+                            app:tint="@color/purple_500" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:text="@{user.full_name}"
+                            android:textColor="@color/purple_500"
+                            android:textSize="@dimen/_14sdp"
+                            tools:text="Phòng Đào Tạo" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingTop="@dimen/_6sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/ic_baseline_school_24"
+                            app:tint="@color/purple_500" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:text="@{user.teach}"
+                            android:textColor="@color/purple_500"
+                            android:textSize="@dimen/_14sdp"
+                            tools:text="Cơ Sở Dữ Liệu" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingTop="@dimen/_6sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/ic_baseline_dynamic_feed_24"
+                            app:tint="@color/purple_500" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:text="@{user.faculty}"
+                            android:textColor="@color/purple_500"
+                            android:textSize="@dimen/_14sdp"
+                            tools:text="Công Nghệ Thông Tin" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:backgroundTint="@color/purple_500"
+                    android:onClick="@{()-> Main.openSignUp()}"
+                    android:src="@drawable/ic_baseline_person_add_24"
+                    android:visibility="@{checkTeacher? View.GONE : View.VISIBLE}"
+                    app:borderWidth="0dp"
+                    app:fabCustomSize="@dimen/_40sdp"
+                    app:maxImageSize="@dimen/_20sdp"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:backgroundTint="@color/purple_500"
+                    android:onClick="@{()-> Main.logOut()}"
+                    android:src="@drawable/ic_baseline_login_24"
+                    app:borderWidth="0dp"
+                    app:fabCustomSize="@dimen/_40sdp"
+                    app:maxImageSize="@dimen/_20sdp"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Không có lịch nào"
-                android:textSize="@dimen/_18sdp"
-                android:visibility="@{listIsEmpty ? View.VISIBLE : View.GONE}" />
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:overScrollMode="never"
+                            android:visibility="@{listIsEmpty ? View.GONE : View.VISIBLE}"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_examination_room" />
+
+                        <TextView
+                            android:id="@+id/tvListCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Không có lịch nào"
+                            android:textSize="@dimen/_18sdp"
+                            android:visibility="@{listIsEmpty ? View.VISIBLE : View.GONE}" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

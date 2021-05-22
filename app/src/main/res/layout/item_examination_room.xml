@@ -77,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_6sdp"
                         android:gravity="center"
-                        android:text="@{@string/time_finish(examinationRoom.timeFinish)}"
+                        android:text="@{examinationRoom.timeFinish}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_13sdp"
                         tools:text="Kết thúc: 09 giờ 15 phút" />
@@ -91,6 +91,16 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_13sdp"
                         tools:text="Giáo viên: Đỗ Kiều My" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:gravity="center"
+                        android:text="@{@string/teacher2(examinationRoom.teacher2)}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp"
+                        tools:text="Giáo viên 2: Đỗ Kiều My" />
                 </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
