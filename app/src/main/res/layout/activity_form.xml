@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="date"
+            type="String" />
+
+        <variable
+            name="start"
+            type="String" />
+
+        <variable
+            name="finish"
+            type="String" />
+
+        <variable
+            name="formExaminationFRG"
+            type="com.bxtruong.huyproject.FormActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tbAddItems"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingEnd="@dimen/_48sdp"
+                android:text="Tạo Phòng Thi"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sdp"
+                tools:ignore="RtlSymmetry"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_12sdp"
+                tools:ignore="ScrollViewSize">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilNameForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập tên phòng"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <EditText
+                        android:id="@+id/edtNameForm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="start"
+                        android:inputType="text"
+                        android:textSize="@dimen/_14sdp"
+                        tools:ignore="Autofill,LabelFor,TextFields" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilTeacher1Form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập giám thị 1"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/edtTeacher1Form"
+                        style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:inputType="text"
+                        android:paddingTop="@dimen/_20sdp"
+                        android:textSize="@dimen/_14sdp"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilTeacher2Form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập giám thị 2"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/edtTeacher2Form"
+                        style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:inputType="text"
+                        android:paddingTop="@dimen/_20sdp"
+                        android:textSize="@dimen/_14sdp"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_8sdp">
+
+                    <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:text="@{@string/date(date)}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        tools:text="Ngày: 15/05/2021" />
+
+                    <ImageButton
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@color/purple_500"
+                        android:onClick="@{()-> formExaminationFRG.openDatePickerDialog()}"
+                        android:padding="@dimen/_6sdp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_calendar_today"
+                        android:tint="@color/white"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_8sdp">
+
+                    <TextView
+                        android:id="@+id/tvStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:text="@{@string/time_start(start)}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        tools:text="Bắt đầu: 09 giờ 15 phút" />
+
+                    <ImageButton
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@color/purple_500"
+                        android:onClick="@{()-> formExaminationFRG.timeStart()}"
+                        android:padding="@dimen/_6sdp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_time"
+                        android:tint="@color/white"
+                        tools:ignore="ContentDescription" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_8sdp">
+
+                    <TextView
+                        android:id="@+id/tvFinish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:text="@{@string/time_finish(finish)}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        tools:text="Kết thúc: 11 giờ 15 phút" />
+
+                    <ImageButton
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@color/purple_500"
+                        android:onClick="@{()-> formExaminationFRG.timeFinish()}"
+                        android:padding="@dimen/_6sdp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_time"
+                        android:tint="@color/white"
+                        tools:ignore="ContentDescription" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:onClick="@{()->formExaminationFRG.clickActionForm()}"
+            android:paddingVertical="@dimen/_6sdp"
+            android:text="Tạo"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_18sdp" />
+    </LinearLayout>
+</layout>

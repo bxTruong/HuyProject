@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">HuyProject</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="time_start">Bắt đầu: %s</string>
+    <string name="time_finish">Kết thúc: %s</string>
+    <string name="teacher">Giáo viên: %s</string>
+    <string name="date_normal">%d/%d/%d</string>
+    <string name="date1">0%d/%d/%d</string>
+    <string name="date2">0%d/0%d/%d</string>
+    <string name="date3">%d/0%d/%d</string>
+    <string name="date">Ngày: %s</string>
+
+    <string name="hello_world">Hello Square World!</string>
+</resources>
