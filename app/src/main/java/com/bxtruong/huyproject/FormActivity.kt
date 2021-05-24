@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_form.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -83,6 +84,7 @@ class FormActivity : AppCompatActivity() {
                         binding.edtNameForm.setText(examinationRoom.nameRoom)
                         binding.edtTeacher1Form.setText(examinationRoom.teacher1)
                         binding.edtTeacher2Form.setText(examinationRoom.teacher2)
+                        binding.edtExamForm.setText(examinationRoom.exam)
                     }
                 })
         }
@@ -105,23 +107,30 @@ class FormActivity : AppCompatActivity() {
 
     fun clickActionForm() {
         val roomName = binding.edtNameForm.text.toString().trim()
+        val exam = binding.edtExamForm.text.toString().trim()
         val teacher1 = binding.edtTeacher1Form.text.toString().trim()
         val teacher2 = binding.edtTeacher2Form.text.toString().trim()
         val start = binding.tvStart.text.toString()
         val finish = binding.tvFinish.text.toString().trim()
         val date = binding.tvDate.text.toString().trim()
-        Log.e("Value"," $start $finish $date ${start.contains("Trống")}")
+        Log.e("Value", " $start $finish $date ${start.contains("Trống")}")
         if (roomName == "") {
             binding.tilNameForm.error = "Không được để trống tên phòng thi"
+        } else if (exam == "") {
+            binding.tilNameForm.error = null
+            binding.tilExamForm.error = "Không được để trống tên môn thi"
         } else if (teacher1 == "") {
             binding.tilNameForm.error = null
+            binding.tilExamForm.error = null
             binding.tilTeacher1Form.error = "Không được để trống tên giám thị 1"
         } else if (teacher2 == "") {
             binding.tilNameForm.error = null
+            binding.tilExamForm.error = null
             binding.tilTeacher1Form.error = null
             binding.tilTeacher2Form.error = "Không được để trống tên giám thị 2"
         } else if (teacher1 == teacher2) {
-            binding.tilNameForm.error = "2 giám thị không được giống nhau"
+            binding.tilTeacher1Form.error = "2 giám thị không được giống nhau"
+            binding.tilTeacher2Form.error = "2 giám thị không được giống nhau"
         } else if (start.contains("Trống") || finish.contains("Trống") || date.contains(
                 "Trống"
             )
@@ -143,6 +152,10 @@ class FormActivity : AppCompatActivity() {
             } else if (!check2) {
                 binding.tilTeacher2Form.error = "Giáo viên không có trong danh sách"
             } else {
+                binding.tilExamForm.error = null
+                binding.tilNameForm.error = null
+                binding.tilTeacher1Form.error = null
+                binding.tilTeacher2Form.error = null
                 if (binding.check == "Tạo") {
                     openPDialog()
                     PushNotification(
@@ -152,7 +165,16 @@ class FormActivity : AppCompatActivity() {
                     }
                     val id = FirebaseDatabase.getInstance().reference.push().key
                     val examinationRoom =
-                        ExaminationRoom(id!!, roomName, date, start, finish, teacher1, teacher2)
+                        ExaminationRoom(
+                            id!!,
+                            roomName,
+                            date,
+                            start,
+                            finish,
+                            teacher1,
+                            teacher2,
+                            exam
+                        )
                     FirebaseDatabase.getInstance().reference.child("Examination")
                         .child(id)
                         .setValue(examinationRoom.toMap()).addOnCompleteListener { task ->
@@ -168,7 +190,16 @@ class FormActivity : AppCompatActivity() {
                         sendNotification(it)
                     }
                     val examinationRoom =
-                        ExaminationRoom(idUpdate, roomName, date, start, finish, teacher1, teacher2)
+                        ExaminationRoom(
+                            idUpdate,
+                            roomName,
+                            date,
+                            start,
+                            finish,
+                            teacher1,
+                            teacher2,
+                            exam
+                        )
                     FirebaseDatabase.getInstance().reference.child("Examination")
                         .child(idUpdate)
                         .setValue(examinationRoom.toMap()).addOnCompleteListener { task ->

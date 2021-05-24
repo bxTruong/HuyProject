@@ -10,17 +10,8 @@
             type="com.bxtruong.huyproject.LoginActivity2" />
     </data>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/a" />
-
         <LinearLayout
+            android:background="@drawable/a"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -89,5 +80,4 @@
                 android:textSize="@dimen/_16sdp" />
 
         </LinearLayout>
-    </FrameLayout>
 </layout>

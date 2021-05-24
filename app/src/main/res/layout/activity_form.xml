@@ -28,18 +28,10 @@
 
     </data>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/a" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/a"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -58,8 +50,7 @@
                 android:text="@{@string/room(check)}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
-                tools:ignore="RtlSymmetry"
-                />
+                tools:ignore="RtlSymmetry" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -86,6 +77,25 @@
 
                     <EditText
                         android:id="@+id/edtNameForm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="start"
+                        android:inputType="text"
+                        android:textSize="@dimen/_14sdp"
+                        tools:ignore="Autofill,LabelFor,TextFields" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilExamForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập tên môn thi"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <EditText
+                        android:id="@+id/edtExamForm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
@@ -231,7 +241,6 @@
         </ScrollView>
 
         <Button
-            tools:text="Tạo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_12sdp"
@@ -239,7 +248,8 @@
             android:paddingVertical="@dimen/_6sdp"
             android:text="@{check}"
             android:textAllCaps="false"
-            android:textSize="@dimen/_18sdp" />
+            android:textSize="@dimen/_18sdp"
+            tools:text="Tạo" />
     </LinearLayout>
-    </FrameLayout>
+
 </layout>

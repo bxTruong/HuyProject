@@ -10,7 +10,8 @@ data class ExaminationRoom(
     var timeStart: String = "",
     var timeFinish: String = "",
     var teacher1: String = "",
-    var teacher2: String = ""
+    var teacher2: String = "",
+    var exam:String=""
 ) {
     @Exclude
     fun toMap(): Map<String, Any?> {
@@ -21,7 +22,8 @@ data class ExaminationRoom(
             "timeStart" to timeStart,
             "timeFinish" to timeFinish,
             "teacher1" to teacher1,
-            "teacher2" to teacher2
+            "teacher2" to teacher2,
+            "exam" to exam
         )
     }
 }

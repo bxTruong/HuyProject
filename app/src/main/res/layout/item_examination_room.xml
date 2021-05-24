@@ -63,6 +63,17 @@
                         tools:text="Phòng 714" />
 
                     <TextView
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@{@string/exam(examinationRoom.exam)}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="italic"
+                        tools:text="Môn: Kỹ Năng Mềm" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -125,7 +136,8 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:onClick="@{()-> click.update(examinationRoom)}"
-                            android:paddingVertical="@dimen/_14sdp"
+                            android:paddingVertical="@dimen/_18sdp"
+                            android:paddingHorizontal="@dimen/_8sdp"
                             android:src="@drawable/ic_edit"
                             tools:ignore="ContentDescription" />
 
@@ -142,7 +154,8 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:onClick="@{()-> click.delete(examinationRoom)}"
-                            android:paddingVertical="@dimen/_14sdp"
+                            android:paddingVertical="@dimen/_18sdp"
+                            android:paddingHorizontal="@dimen/_8sdp"
                             android:src="@drawable/ic_delete"
                             tools:ignore="ContentDescription" />
 
